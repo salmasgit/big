@@ -1,0 +1,37 @@
+Scenario('ClickOnFloatingButton_test', async ({ I }) => {
+  I.amOnPage('https://pretaa-staging.netlify.app/login');
+  I.seeElement('[data-testid="continue-btn"]');
+  I.fillField('[data-testid="email"]' , 'jiniya+1+admin@itobuz.com');
+  I.click('[data-testid="continue-btn"]');
+  I.fillField('[data-testid="password"]' , 'Password@50');
+  I.seeElement('[data-testid="submit-btn"]');
+  I.waitForElement('[data-testid="submit-btn"]',1);
+  I.click('[type="button"]');
+  I.click('[data-testid="submit-btn"]');
+  I.seeElement('[data-test-id="page-title"]');
+  I.waitForElement('[data-test-id="page-title"]' ,1);
+  I.click('[href="/companies/list"]');
+  let companyList = await I.grabTextFrom('[href="/companies/9701ef1c-52b6-4ca7-90f1-9effebce13ec"]');
+  console.log(companyList);
+  I.click('[data-test-id="company-list-link"]');
+  I.waitForElement('[clip-rule="evenodd"]:nth-child(1)' ,1);
+  I.click('[clip-rule="evenodd"]:nth-child(1)');
+  I.seeElement('[class="flex items-center outline-none"]');
+  I.wait(3);
+  I.click('[data-testid="launch"]');
+  I.wait(2);
+  I.click('[src="/static/media/icon-filled-down.59117335.svg"]');
+  I.wait(2);
+  var dropdown = await I.grabTextFrom('[data-test-id="select-template"]');
+  I.click("//div[@id='react-select-2-option-2']/div/label");
+  I.pressKey("Enter");
+  I.wait(2);
+  I.click('[type="submit"]');
+  I.see('Launch');
+  I.fillField('[data-test-id="email-input"]','sohail@itobuz.com');
+  I.click('[data-testid="preview-btn"]')
+  I.click('[data-testid="launch-btn"]');
+  I.wait(2);
+  I.see('Launch Detail'); 
+  I.wait(2);   
+});
